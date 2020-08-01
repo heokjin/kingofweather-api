@@ -17,7 +17,7 @@ func InitDB() {
 
 	//db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
 	dbInfo := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable",
-		"ec2-54-165-36-134.compute-1.amazonaws.com", "ooimetudehjdwy", "65bf2bb886783847b37ed7dad58f71523d53ec1083468087e15a5ab283927dce", "d1an796uv1d5p4")
+		"ec2-54-146-91-153.compute-1.amazonaws.com", "phzmidhronstsz", "3bf5a66ae8169808307a5a471bb8e4ac66642688d32f7daa51849e2beedafa4e", "d3v41lr940afms")
 	db, err = sql.Open("postgres", dbInfo)
 	if err != nil {
 		log.Println("Got error when connect database", err)
