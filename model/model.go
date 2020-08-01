@@ -24,7 +24,7 @@ func InitDB() {
 		log.Fatal(err)
 	}
 
-	log.Println("DB OK1:", db)
+	log.Println("DB OK2:", db)
 
 	var rows *sql.Rows
 	rows, err = db.Query("SELECT cluster_id, user_id FROM users")
