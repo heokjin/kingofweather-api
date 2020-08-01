@@ -2,7 +2,7 @@
 go build
 
 ---
-"# cheoeum" 
+"# king of weather - api" 
 
 docker build -t heokjin/kingofweather-api .  <br>
 docker run -p 80:80 -it --rm --name kingofweather-api kingofweather-api:latest
