@@ -27,7 +27,7 @@ func main() {
 	e.Use(middleware.Recover())
 	//e.Use(middleware.Static("static"))
 
-	e.GET("/checkout", CheckOut)
+	e.GET("/check", Check)
 
 	// Start server
 	e.Start(":" + port)
