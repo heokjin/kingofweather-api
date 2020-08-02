@@ -31,7 +31,7 @@ func main() {
 
 	e.GET("/check", Check)
 
-	e.GET("/getTmFc", GetWeatherMidWater)
+	e.GET("/getMidWater", GetWeatherMidWater)
 
 	// Start server
 	e.Start(":" + port)

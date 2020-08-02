@@ -38,7 +38,7 @@ func InitDB() {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(cluster_id, user_id)
+		err := rows.Scan(&cluster_id, &user_id)
 		if err != nil {
 			panic(err)
 		}
@@ -47,11 +47,11 @@ func InitDB() {
 	}
 }
 
-func GetMidLand(tmFc, regId string) string {
+func GetMidLand(tmFc, regId string) (string, error) {
 	var response string
-	err := db.QueryRow("SELECT cluster_id, user_id FROM users").Scan(response)
+	err := db.QueryRow("select response from weather_mid_water where tm_fc=$1 and reg_id=$2 order by id desc limit 1", tmFc, regId).Scan(&response)
 	checkError(err)
-	return response
+	return response, err
 }
 
 func InsertMidLandFcst(tmFc, regId, response string) {
