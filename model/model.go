@@ -13,7 +13,7 @@ var (
 )
 
 func InitDB() {
-	var err  error
+	var err error
 	//db, err := gorm.Open("postgres", os.Getenv("DATABASE_URL"))
 
 	//db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
@@ -74,7 +74,7 @@ func InsertShortTemp(tmFc, xy, response string) {
 
 func DeleteWeatherDB() {
 	t := time.Now()
-	date := t.AddDate(0,0,-2).Format("2006-01-02 15:04:05")
+	date := t.AddDate(0, 0, -2).Format("2006-01-02 15:04:05")
 
 	sql_statement := "DELETE FROM weather_mid_water WHERE create_dt < $1;"
 	_, err := db.Exec(sql_statement, date)
@@ -88,7 +88,6 @@ func DeleteWeatherDB() {
 	_, err = db.Exec(sql_statement, date)
 	checkError(err)
 }
-
 
 func checkError(err error) {
 	if err != nil {

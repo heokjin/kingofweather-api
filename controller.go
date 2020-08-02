@@ -8,10 +8,7 @@ import (
 	"net/http"
 )
 
-
 func Check(c echo.Context) error {
-
-
 	return c.String(http.StatusOK, "OK")
 
 }
@@ -26,5 +23,5 @@ func GetWeatherMidWater(c echo.Context) error {
 		return c.String(http.StatusInternalServerError, err.Error())
 	}
 
-	return c.JSON(http.StatusOK, res)
+	return c.String(http.StatusOK, res)
 }

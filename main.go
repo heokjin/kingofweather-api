@@ -15,15 +15,12 @@ func main() {
 		log.Fatal("$PORT must be set")
 	}
 
-	//TODO 배포하기전에 주석을 풀자!
 	model.InitDB()
 
 	go GoScheduleDeleteDB()
-
 	go GoScheduleMidLandFcst()
 	go GoScheduleMidTemp()
 	go GoScheduleShortTemp()
-
 
 	e := echo.New()
 	e.Use(middleware.Logger())
