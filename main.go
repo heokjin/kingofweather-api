@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"heokjin/kingofweather-api/model"
 	"log"
 	"os"
@@ -16,10 +15,12 @@ func main() {
 		log.Fatal("$PORT must be set")
 	}
 
+	//TODO 배포하기전에 주석을 풀자!
 	model.InitDB()
-	//model.InitSchema()
 
-	fmt.Println("TEST1")
+	//중기강예보
+	//go GoScheduleMidLandFcst()
+	taskWeatherMidLandFcst06hour()
 
 	e := echo.New()
 	// Middleware
@@ -28,6 +29,8 @@ func main() {
 	//e.Use(middleware.Static("static"))
 
 	e.GET("/check", Check)
+
+	e.GET("/getTmFc", GetWeatherMidWater)
 
 	// Start server
 	e.Start(":" + port)

@@ -44,6 +44,17 @@ func InitDB() {
 
 		fmt.Println(cluster_id, user_id)
 	}
+}
+
+func InsertMidLandFcst(tmFc, regId, response string) {
+	sql_statement := "INSERT INTO weather_mid_water (tmFc, regId, response) VALUES ($1, $2, $3);"
+	_, err := db.Exec(sql_statement, tmFc, regId, response)
+	checkError(err)
+}
 
 
+func checkError(err error) {
+	if err != nil {
+		fmt.Println(err)
+	}
 }
