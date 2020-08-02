@@ -19,7 +19,7 @@ func main() {
 	model.InitDB()
 
 	go GoScheduleDeleteDB()
-	
+
 	go GoScheduleMidLandFcst()
 	go GoScheduleMidTemp()
 	go GoScheduleShortTemp()

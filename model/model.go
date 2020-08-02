@@ -38,13 +38,20 @@ func InitDB() {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(&cluster_id, &user_id)
+		err := rows.Scan(cluster_id, user_id)
 		if err != nil {
 			panic(err)
 		}
 
 		fmt.Println(cluster_id, user_id)
 	}
+}
+
+func GetMidLand(tmFc, regId string) string {
+	var response string
+	err := db.QueryRow("SELECT cluster_id, user_id FROM users").Scan(response)
+	checkError(err)
+	return response
 }
 
 func InsertMidLandFcst(tmFc, regId, response string) {
