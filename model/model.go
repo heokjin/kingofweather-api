@@ -47,7 +47,7 @@ func InitDB() {
 }
 
 func InsertMidLandFcst(tmFc, regId, response string) {
-	sql_statement := "INSERT INTO weather_mid_water (tmFc, regId, response) VALUES ($1, $2, $3);"
+	sql_statement := "INSERT INTO weather_mid_water (tm_fc, reg_id, response) VALUES ($1, $2, $3);"
 	_, err := db.Exec(sql_statement, tmFc, regId, response)
 	checkError(err)
 }
