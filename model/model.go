@@ -5,6 +5,7 @@ import (
 	"fmt"
 	_ "github.com/lib/pq"
 	"log"
+	"time"
 )
 
 var (
@@ -49,6 +50,25 @@ func InitDB() {
 func InsertMidLandFcst(tmFc, regId, response string) {
 	sql_statement := "INSERT INTO weather_mid_water (tm_fc, reg_id, response) VALUES ($1, $2, $3);"
 	_, err := db.Exec(sql_statement, tmFc, regId, response)
+	checkError(err)
+}
+
+func InsertMidTemp(tmFc, regId, response string) {
+	sql_statement := "INSERT INTO weather_mid_temp (tm_fc, reg_id, response) VALUES ($1, $2, $3);"
+	_, err := db.Exec(sql_statement, tmFc, regId, response)
+	checkError(err)
+}
+
+func DeleteWeatherDB() {
+	t := time.Now()
+	date := t.AddDate(0,0,-2).Format("2006-01-02 15:04:05")
+
+	sql_statement := "DELETE FROM weather_mid_water WHERE create_dt < $1;"
+	_, err := db.Exec(sql_statement, date)
+	checkError(err)
+
+	sql_statement = "DELETE FROM weather_mid_temp WHERE create_dt < $1;"
+	_, err = db.Exec(sql_statement, date)
 	checkError(err)
 }
 

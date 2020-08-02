@@ -18,9 +18,10 @@ func main() {
 	//TODO 배포하기전에 주석을 풀자!
 	model.InitDB()
 
-	//중기강예보
-	//go GoScheduleMidLandFcst()
-	taskWeatherMidLandFcst06hour()
+	go GoScheduleDeleteDB()
+	go GoScheduleMidLandFcst()
+	go GoScheduleMidTemp()
+
 
 	e := echo.New()
 	// Middleware
