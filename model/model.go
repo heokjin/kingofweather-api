@@ -59,6 +59,12 @@ func InsertMidTemp(tmFc, regId, response string) {
 	checkError(err)
 }
 
+func InsertShortTemp(tmFc, xy, response string) {
+	sql_statement := "INSERT INTO weather_short_temp (tm_fc, reg_id, response) VALUES ($1, $2, $3);"
+	_, err := db.Exec(sql_statement, tmFc, xy, response)
+	checkError(err)
+}
+
 func DeleteWeatherDB() {
 	t := time.Now()
 	date := t.AddDate(0,0,-2).Format("2006-01-02 15:04:05")
@@ -68,6 +74,10 @@ func DeleteWeatherDB() {
 	checkError(err)
 
 	sql_statement = "DELETE FROM weather_mid_temp WHERE create_dt < $1;"
+	_, err = db.Exec(sql_statement, date)
+	checkError(err)
+
+	sql_statement = "DELETE FROM weather_short_temp WHERE create_dt < $1;"
 	_, err = db.Exec(sql_statement, date)
 	checkError(err)
 }

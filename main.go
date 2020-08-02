@@ -19,15 +19,15 @@ func main() {
 	model.InitDB()
 
 	go GoScheduleDeleteDB()
+	
 	go GoScheduleMidLandFcst()
 	go GoScheduleMidTemp()
+	go GoScheduleShortTemp()
 
 
 	e := echo.New()
-	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	//e.Use(middleware.Static("static"))
 
 	e.GET("/check", Check)
 
